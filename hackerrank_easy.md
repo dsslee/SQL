@@ -63,7 +63,13 @@ Q1) Query a list of CITY and STATE from STATION.
 SELECT CITY, STATE FROM STATION 
 ```
 
-Q2) Query a list of CITY names from STATION with even ID numbers only. You may print the results in any order, but must exclude duplicates from your answer.
+Q2) Find the sum of all values in LAT_N rounded to a scale of 2 decimal places and the sum of all values in LONG_W rounded to a scale of  decimal places.
+```sql
+SELECT ROUND(SUM(LAT_N),2), ROUND(SUM(LONG_W ),2)
+FROM STATION
+```
+
+Q3) Query a list of CITY names from STATION with even ID numbers only. You may print the results in any order, but must exclude duplicates from your answer.
 ```sql
 SELECT DISTINCT CITY 
 FROM STATION 
@@ -71,25 +77,24 @@ WHERE MOD(ID,2)=0
 ORDER BY CITY ASC;       
 ```
 
-Q3) Find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table.
+Q4) Find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table.
 ```sql
 SELECT COUNT(CITY) - COUNT(DISTINCT CITY) FROM STATION;       
 ```
 
-Q4) Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+Q5) Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
 Let's say that CITY only has four entries: DEF, ABC, PQRS and WXY
 *Sample Output*
 ABC 3 
 PQRS 4
-
-*Explanation*
-When ordered alphabetically, the CITY names are listed as ABC, DEF, PQRS, and WXY, with the respective lengths 3,3,4,3,3,4, and 33. The longest-named city is obviously PQRS, but there are 33 options for shortest-named city; we choose ABC, because it comes first alphabetically.
-
-**Solution**
 ```sql
-select city, length(city) from station order by length(city) DESC,city ASC fetch first row only;
-select city, length(city) from station order by length(city) asc ,city asc fetch first row only;      
+SELECT CITY, LENGTH(CITY)
+FROM STATION
+ORDER BY LENGTH(CITY) DESC, CITY ASC;
 ```
+*Explanation*
+When ordered alphabetically, the CITY names are listed as ABC, DEF, PQRS, and WXY, with the respective lengths 3,3,4,3,3,4, and 33. The longest-named city is obviously PQRS, but there are 33 options for shortest-named city; we choose ABC, because it comes first alphabetically.   
+
 
 Q6) Query the list of CITY names starting with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
 **Solution**
