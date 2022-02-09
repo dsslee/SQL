@@ -1,4 +1,4 @@
-**SELECTION CHALLENGE**
+**SELECTION CHALLENGE**   
 Given the CITY table is described as follows:
 |  Field | Type |
 |-------|-----|
@@ -46,7 +46,7 @@ WHERE COUNTRYCODE = 'JPN';
 ```
  
   
-**WEATHER OBSERVATION STATION**  
+**WEATHER OBSERVATION STATION**   
 Given the  STATION table is described as follows:
 |  Field | Type |
 |---|---|
@@ -145,21 +145,8 @@ WHERE LOWER(CITY) NOT RLIKE '^[aeiou].*'
 AND LOWER(CITY) NOT RLIKE '.*[aeiou]$'
 ```
 
-Q13) Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.
-**Solution**
-```sql
-SELECT DISTINCT CITY FROM STATION WHERE (CITY LIKE 'A%' OR CITY LIKE 'E%' OR CITY LIKE 'I%' OR CITY LIKE 'O%' OR CITY LIKE 'U%') AND (CITY LIKE '%a' OR CITY LIKE '%e' OR CITY LIKE '%i' OR CITY LIKE '%o' OR CITY LIKE '%u') order by city;      
-```
 
-Q14) Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
-**Solution**
-```sql
-SELECT DISTINCT CITY FROM STATION WHERE upper(SUBSTR(CITY,1,1)) NOT IN ('A','E','I','O','U') AND lower(SUBSTR(CITY,1,1)) NOT IN
-('a','e','i','o','u');     
-```
-
-
-**HIGHER THAN 75 MARKS**
+**HIGHER THAN 75 MARKS**  
 Q18) Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
 Given the STUDENTS table is described as follows:
 |  Column | Type |
