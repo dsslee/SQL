@@ -144,7 +144,7 @@ Sample Input:
 ```sql
 ```
    
-     
+   ---------  
 # NEW COMPANIES
 |  Column | Type |
 |---|---|
