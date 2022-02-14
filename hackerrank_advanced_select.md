@@ -141,10 +141,7 @@ Sample Input:
 |---|---|----|
 
 # SOLUTION
-```sql
-```
-   
-   ---------  
+
 # NEW COMPANIES
 |  Column | Type |
 |---|---|
