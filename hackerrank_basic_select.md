@@ -97,6 +97,10 @@ SELECT TOP 1 CITY, LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) ASC;
 
 Q6) Query the list of CITY names starting with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
 ```sql
+SELECT DISTINT(CITY)
+FROM STATION
+WHERE CITY REGEX '^[aeiou]'
+
 SELECT DISTINCT(CITY) FROM STATION 
 WHERE CITY LIKE 'A%' 
 OR CITY LIKE 'E%' 
@@ -108,6 +112,14 @@ ORDER BY CITY ASC;
 
 Q7) Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
 ```sql
+SELECT DISTINT(CITY)
+FROM STATION
+WHERE CITY REGEX '[aeiou]$'
+
+SELECT DISTINT(CITY)
+FROM STATION
+WHERE CITY RLIKE '.*[aeiou]'
+
 SELECT DISTINCT(CITY) FROM STATION 
 WHERE CITY LIKE '%a' 
 OR CITY LIKE '%e' 
