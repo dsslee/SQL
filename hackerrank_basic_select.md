@@ -1,4 +1,4 @@
-**SELECTION CHALLENGE**   
+# SELECTION CHALLENGE - Easy
 Given the CITY table is described as follows:
 |  Field | Type |
 |-------|-----|
@@ -46,7 +46,7 @@ WHERE COUNTRYCODE = 'JPN';
 ```
  
   
-**WEATHER OBSERVATION STATION**   
+# WEATHER OBSERVATION STATION - Easy
 Given the  STATION table is described as follows:
 |  Field | Type |
 |---|---|
@@ -90,6 +90,9 @@ PQRS 4
 ```sql
 SELECT CITY, LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) ASC LIMIT 1;
 SELECT CITY, LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) DESC LIMIT 1;
+
+SELECT TOP 1 CITY, LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) ASC;
+
 ```
 
 Q6) Query the list of CITY names starting with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
