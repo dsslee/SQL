@@ -36,8 +36,11 @@ GROUP BY CY.CONTINENT
 ```
 
 # Report (Lvl: Medium)
-Q
+Q) You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks.
 **SOLUTIONS**
+Task
+1) no name below grade 8 -> null
+2) grade in descending order, then name alpha, marks
 ```sql
 SELECT IF(grade >= 8, S.name, "NULL")
 , G.grade
