@@ -225,3 +225,13 @@ SELECT CEIL(AVG(salary) - AVG(REPLACE(salary, 0, "")))
 --    , CEIL(AVG(salary))  -- 4047
 FROM EMPLOYEES;
 ```
+
+## TOP EARNERS
+```sql
+SELECT E.months * E.salary AS Earning
+, COUNT(*)  -- total num of employees who have maximum total earnings
+FROM Employee E
+GROUP BY 1
+ORDER BY Earning DESC
+LIMIT 1
+```
