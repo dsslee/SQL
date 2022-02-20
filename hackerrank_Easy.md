@@ -162,6 +162,23 @@ WHERE LOWER(CITY) NOT RLIKE '^[aeiou].*'
 AND LOWER(CITY) NOT RLIKE '.*[aeiou]$'
 ```
 
+Q13)Query the sum of Northern Latitudes (LAT_N) from STATION having values greater than 38.7880 and less than 137.2345. Truncate your answer to 4 decimal places. 
+```sql
+SELECT ROUND(SUM(LAT_N),4)
+FROM STATION
+WHERE LAT_N > 38.7880
+AND LAT_N <  137.2345
+
+-- NOTE:
+-- since BETWEEN is inclusive, used > conditions
+```
+
+Q14) Query the greatest value of the Northern Latitudes (LAT_N) from STATION that is less than 137.2345. Truncate your answer to 4 decimal places.
+```
+SELECT MAX(ROUND(LAT_N, 4))
+FROM STATION
+WHERE LAT_N < 137.2345
+```
 
 **HIGHER THAN 75 MARKS**  
 Q) Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
@@ -246,3 +263,4 @@ GROUP BY A.Earnings
 ORDER BY A.Earnings DESC
 LIMIT 1
 ```
+
