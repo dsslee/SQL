@@ -1,4 +1,6 @@
-# SELECTION CHALLENGE - Easy
+# BASIC SELECT  
+
+## Selecting Exercisees with CITY Table
 Given the CITY table is described as follows:
 |  Field | Type |
 |-------|-----|
@@ -8,45 +10,45 @@ Given the CITY table is described as follows:
 | DISTRICT |  VARCHAR2(20) |
 | POPULATION | NUMBER |
 
-Q1) Query all columns for all American cities in CITY with populations larger than 100,000. The CountryCode for America is USA.
+Q1) SELECT ALL - Query all columns for every row in the CITY table.
+```sql
+SELECT * FROM CITY;
+```
+
+Q2) SELECT BY ID -  Query all columns for a city in CITY with the ID 1661.
+```sql
+SELECT * FROM CITY 
+WHERE ID = 1661; 
+```
+
+Q3) JAPANESE CITY ATTRIBUTES - Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is JPN.
+```sql
+SELECT * FROM CITY 
+WHERE COUNTRYCODE = 'JPN'; 
+```
+
+Q4) JAPANESE CITY NAME - Query the names of all the Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
+```sql
+SELECT NAME FROM CITY 
+WHERE COUNTRYCODE = 'JPN';
+
+
+Q5) REVISING THE SELECT QUERY I - Query all columns for all American cities in CITY with populations larger than 100,000. The CountryCode for America is USA.
 ```sql
 SELECT * FROM CITY 
 WHERE COUNTRYCODE = 'USA' 
 AND POPULATION > 100000;
 ```
 
-Q2) Query the names of all American cities in CITY with populations larger than 120,000. The CountryCode for America is USA.
+Q6) REVISING THE SELECT QUERY II - Query the names of all American cities in CITY with populations larger than 120,000. The CountryCode for America is USA.
 ```sql
 SELECT NAME FROM CITY 
 WHERE COUNTRYCODE = 'USA' 
 AND POPULATION > 120000;
 ```
 
-Q3) Query all columns for every row in the CITY table.
-```sql
-SELECT * FROM CITY;
-```
-
-Q4) Query all columns for a city in CITY with the ID 1661.
-```sql
-SELECT * FROM CITY 
-WHERE ID = 1661; 
-```
-
-Q5) Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is JPN.
-```sql
-SELECT * FROM CITY 
-WHERE COUNTRYCODE = 'JPN'; 
-```
-
-Q6) Query the names of all the Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
-```sql
-SELECT NAME FROM CITY 
-WHERE COUNTRYCODE = 'JPN';
-```
- 
   
-# WEATHER OBSERVATION STATION - Easy
+## WEATHER OBSERVATION STATION - Easy
 Given the  STATION table is described as follows:
 |  Field | Type |
 |---|---|
@@ -213,6 +215,13 @@ WHERE SALARY > 2000  AND MONTHS < 10
 ORDER BY EMPLOYEE_ID;  
 ```
 
-#
+# Blunder
+**Question:** Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average salary.
+Write a query calculating the amount of error (i.e.:  average monthly salaries), and round it up to the next integer.
 ```sql
+SELECT CEIL(AVG(salary) - AVG(REPLACE(salary, 0, ""))) 
+--    AVG(salary)          -- 4046.7500
+--    , FLOOR(AVG(salary)) -- 4046
+--    , CEIL(AVG(salary))  -- 4047
+FROM EMPLOYEES;
 ```
