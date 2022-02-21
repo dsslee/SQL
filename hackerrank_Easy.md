@@ -288,14 +288,15 @@ LIMIT 1
 
 ## Draw the Triangle1
 ```sql
-set @number = 21;
-select repeat('* ', @number := @number - 1) from information_schema.tables;
+SET @number = 21;
+SELECT REPEAT('* ', @number := @number - 1) 
+FROM information_schema.tables;
 ```
 
 ## Draw the Triangle2
 ```sql
-set @number = 0;
-select repeat('* ', @number := @number + 1) 
-from information_schema.tables
-where @row < 20
+SET @number = 0;
+select repeat('* ', @number := @number + 1)
+FROM information_schema.tables
+WHERE @number < 20
 ```
