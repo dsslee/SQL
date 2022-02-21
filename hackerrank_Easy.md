@@ -182,17 +182,25 @@ WHERE LAT_N < 137.2345
 
 Q15) Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) in STATION that is less than . Round your answer to  decimal places.
 ```sql
-SELECT ROUND(A.LONG_W, 4)
+SELECT ROUND(LONG_W, 4)
 FROM STATION 
-WHERE LAT_N = (SELECT MAX(LAT_N) FROM STATION WHERE LAT_N<137.2345);
-
-SELECT ROUND(A.LONG_W, 4)
-FROM (SELECT ID, LAT_N, LONG_W FROM STATION
-        WHERE LAT_N < 137.2345
-        ORDER BY LAT_N DESC
-     ) AS A
-WHERE A.LAT_N = MAX(A.LAT_N)
+WHERE LAT_N = (SELECT MAX(LAT_N) FROM STATION WHERE LAT_N < 137.2345);
 ```
+
+Q16) Query the smallest Northern Latitude (LAT_N) from STATION that is greater than 38.7780. Round your answer to 4 decimal places.
+```sql
+SELECT ROUND(MIN(LAT_N), 4) 
+FROM STATION
+WHERE LAT_N > 38.7780
+```
+
+Q17) Query the Western Longitude (LONG_W)where the smallest Northern Latitude (LAT_N) in STATION is greater than 38.7780. Round your answer to 4 decimal places.
+```sql
+SELECT ROUND(LONG_W, 4) 
+FROM STATION
+WHERE (SELECT MIN(LAT_N) FROM STATION WHERE LAT_N > 38.7780)
+```
+
 
 **HIGHER THAN 75 MARKS**  
 Q) Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
@@ -278,3 +286,16 @@ ORDER BY A.Earnings DESC
 LIMIT 1
 ```
 
+## Draw the Triangle1
+```sql
+set @number = 21;
+select repeat('* ', @number := @number - 1) from information_schema.tables;
+```
+
+## Draw the Triangle2
+```sql
+set @number = 0;
+select repeat('* ', @number := @number + 1) 
+from information_schema.tables
+where @row < 20
+```
