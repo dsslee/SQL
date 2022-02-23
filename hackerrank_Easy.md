@@ -1,4 +1,6 @@
-# SELECTION CHALLENGE - Easy
+# BASIC SELECT  
+
+## Selecting Exercisees with CITY Table
 Given the CITY table is described as follows:
 |  Field | Type |
 |-------|-----|
@@ -8,45 +10,45 @@ Given the CITY table is described as follows:
 | DISTRICT |  VARCHAR2(20) |
 | POPULATION | NUMBER |
 
-Q1) Query all columns for all American cities in CITY with populations larger than 100,000. The CountryCode for America is USA.
+Q1) SELECT ALL - Query all columns for every row in the CITY table.
+```sql
+SELECT * FROM CITY;
+```
+
+Q2) SELECT BY ID -  Query all columns for a city in CITY with the ID 1661.
+```sql
+SELECT * FROM CITY 
+WHERE ID = 1661; 
+```
+
+Q3) JAPANESE CITY ATTRIBUTES - Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is JPN.
+```sql
+SELECT * FROM CITY 
+WHERE COUNTRYCODE = 'JPN'; 
+```
+
+Q4) JAPANESE CITY NAME - Query the names of all the Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
+```sql
+SELECT NAME FROM CITY 
+WHERE COUNTRYCODE = 'JPN';
+
+
+Q5) REVISING THE SELECT QUERY I - Query all columns for all American cities in CITY with populations larger than 100,000. The CountryCode for America is USA.
 ```sql
 SELECT * FROM CITY 
 WHERE COUNTRYCODE = 'USA' 
 AND POPULATION > 100000;
 ```
 
-Q2) Query the names of all American cities in CITY with populations larger than 120,000. The CountryCode for America is USA.
+Q6) REVISING THE SELECT QUERY II - Query the names of all American cities in CITY with populations larger than 120,000. The CountryCode for America is USA.
 ```sql
 SELECT NAME FROM CITY 
 WHERE COUNTRYCODE = 'USA' 
 AND POPULATION > 120000;
 ```
 
-Q3) Query all columns for every row in the CITY table.
-```sql
-SELECT * FROM CITY;
-```
-
-Q4) Query all columns for a city in CITY with the ID 1661.
-```sql
-SELECT * FROM CITY 
-WHERE ID = 1661; 
-```
-
-Q5) Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is JPN.
-```sql
-SELECT * FROM CITY 
-WHERE COUNTRYCODE = 'JPN'; 
-```
-
-Q6) Query the names of all the Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
-```sql
-SELECT NAME FROM CITY 
-WHERE COUNTRYCODE = 'JPN';
-```
- 
   
-# WEATHER OBSERVATION STATION - Easy
+## WEATHER OBSERVATION STATION - Easy
 Given the  STATION table is described as follows:
 |  Field | Type |
 |---|---|
@@ -160,6 +162,45 @@ WHERE LOWER(CITY) NOT RLIKE '^[aeiou].*'
 AND LOWER(CITY) NOT RLIKE '.*[aeiou]$'
 ```
 
+Q13)Query the sum of Northern Latitudes (LAT_N) from STATION having values greater than 38.7880 and less than 137.2345. Truncate your answer to 4 decimal places. 
+```sql
+SELECT ROUND(SUM(LAT_N),4)
+FROM STATION
+WHERE LAT_N > 38.7880
+AND LAT_N <  137.2345
+
+-- NOTE:
+-- since BETWEEN is inclusive, used > conditions
+```
+
+Q14) Query the greatest value of the Northern Latitudes (LAT_N) from STATION that is less than 137.2345. Truncate your answer to 4 decimal places.
+```sql
+SELECT MAX(ROUND(LAT_N, 4))
+FROM STATION
+WHERE LAT_N < 137.2345
+```
+
+Q15) Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) in STATION that is less than . Round your answer to  decimal places.
+```sql
+SELECT ROUND(LONG_W, 4)
+FROM STATION 
+WHERE LAT_N = (SELECT MAX(LAT_N) FROM STATION WHERE LAT_N < 137.2345);
+```
+
+Q16) Query the smallest Northern Latitude (LAT_N) from STATION that is greater than 38.7780. Round your answer to 4 decimal places.
+```sql
+SELECT ROUND(MIN(LAT_N), 4) 
+FROM STATION
+WHERE LAT_N > 38.7780
+```
+
+Q17) Query the Western Longitude (LONG_W)where the smallest Northern Latitude (LAT_N) in STATION is greater than 38.7780. Round your answer to 4 decimal places.
+```sql
+SELECT ROUND(LONG_W, 4) 
+FROM STATION
+WHERE (SELECT MIN(LAT_N) FROM STATION WHERE LAT_N > 38.7780)
+```
+
 
 **HIGHER THAN 75 MARKS**  
 Q) Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
@@ -213,6 +254,49 @@ WHERE SALARY > 2000  AND MONTHS < 10
 ORDER BY EMPLOYEE_ID;  
 ```
 
-#
+# Blunder
+**Question:** Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average salary.
+Write a query calculating the amount of error (i.e.:  average monthly salaries), and round it up to the next integer.
 ```sql
+SELECT CEIL(AVG(salary) - AVG(REPLACE(salary, 0, ""))) 
+--    AVG(salary)          -- 4046.7500
+--    , FLOOR(AVG(salary)) -- 4046
+--    , CEIL(AVG(salary))  -- 4047
+FROM EMPLOYEES;
+```
+
+## TOP EARNERS
+**Questions:** We define an employee's total earnings to be their monthly  worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. Then print these values as  space-separated integers.
+Total Earnings =  salary x month  ve maximum total earnings
+```sql
+SELECT E.months * E.salary AS Earning
+, COUNT(*)  -- total num of employees who have maximum total earnings
+FROM Employee E
+GROUP BY 1
+ORDER BY Earning DESC
+LIMIT 1
+
+SELECT MAX(A.Earnings)
+, COUNT(*)
+FROM ( -- find Earnings
+      SELECT E.months * E.salary AS Earnings FROM EMPLOYEE E
+      ) AS A
+GROUP BY A.Earnings
+ORDER BY A.Earnings DESC
+LIMIT 1
+```
+
+## Draw the Triangle1
+```sql
+SET @number = 21;
+SELECT REPEAT('* ', @number := @number - 1) 
+FROM information_schema.tables;
+```
+
+## Draw the Triangle2
+```sql
+SET @number = 0;
+select repeat('* ', @number := @number + 1)
+FROM information_schema.tables
+WHERE @number < 20
 ```
