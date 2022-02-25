@@ -140,7 +140,9 @@ Sample Input:
 |  A | B | C | 
 |---|---|----|
 
-# SOLUTION
+```sql
+
+```
 
 # NEW COMPANIES
 Q) Amber's conglomerate corporation just acquired some new companies. Each of the companies follows this hierarchy: F > LM > SM > M > E
