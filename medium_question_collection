@@ -51,6 +51,31 @@ FROM fb_na_energy
     ) AS T
 GROUP BY T.date
 LIMIT 2
+
+
+-- option2
+WITH data AS ( -- UNION ALL CENTERS
+            SELECT *
+                 , CASE WHEN consumption > 0 THEN 'Europe' ELSE NULL END AS data_center_location
+            FROM fb_eu_energy 
+            UNION ALL
+            SELECT * 
+                 , CASE WHEN consumption > 0 THEN 'Asia' ELSE NULL END AS data_center_location
+            FROM fb_asia_energy 
+            UNION ALL
+            SELECT * 
+                 , CASE WHEN consumption > 0 THEN 'North America' ELSE NULL END AS data_center_location
+            FROM fb_na_energy )
+
+SELECT date
+        , total_consumption 
+FROM (-- rank consumption
+        SELECT date
+              , SUM(consumption) as total_consumption 
+              , dense_rank() over (order by SUM(consumption) DESC) AS rnk
+        FROM data
+        GROUP BY date) AS data1
+WHERE data1.rnk =1
 ```
 
 ```sql
