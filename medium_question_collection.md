@@ -1,4 +1,4 @@
-# Acceptance Rate By Date (facebook)
+# Acceptance Rate By Date (Facebook)
 What is the overall friend acceptance rate by date? Your output should have the rate of acceptances by the date the request was sent. Order by the earliest date to latest.
 Assume that each friend request starts by a user sending (i.e., user_id_sender) a friend request to another user (i.e., user_id_receiver) that's logged in the table with action = 'sent'. If the request is accepted, the table logs action = 'accepted'. If the request is not accepted, no record of action = 'accepted' is logged.
 
@@ -25,7 +25,7 @@ GROUP BY S.date
 ORDER BY S.date
 ```
 
-# Highest Energy Consumption (facebook)
+# Highest Energy Consumption (Facebook)
 Find the date with the highest total energy consumption from the Meta/Facebook data centers. Output the date along with the total energy consumption across all data centers.
 ```sql
 -- Plan
@@ -79,7 +79,7 @@ FROM (-- rank consumption
 WHERE data1.rnk =1
 ```
 
-# Finding User Purchases (amazon)
+# Finding User Purchases (Amazon)
 Write a query that'll identify returning active users. A returning active user is a user that has made a second purchase within 7 days of any other of their purchases. Output a list of user_ids of these returning active users.
 ```sql
 -- PLAN
@@ -108,7 +108,7 @@ AND ABS(DATEDIFF(t1.created_at, t2.created_at)) <= 7
 AND t1.id != t2.id -- but can't be same id
 ```
 
-# Lowest Priced Orders (amazon)
+# Lowest Priced Orders (Amazon)
 Find the lowest order cost of each customer.
 Output the customer id along with the first name and the lowest order price.
 
@@ -154,7 +154,7 @@ GROUP BY C.id
 ORDER BY C.id
 ```
 
-# Second Highest Salary
+# Second Highest Salary (Amazon)
 Find the second highest salary of employees.
 ```sql
 SELECT *
@@ -167,7 +167,7 @@ FROM employee
 WHERE rnk = 2
 ```
 
-# Favorite Customer
+# Favorite Customer (Amazon)
 Find "favorite" customers based on the order count and the total cost of orders.
 A customer is considered as a favorite if he or she has placed more than 3 orders and with the total cost of orders more than $100.
 
@@ -205,13 +205,124 @@ AND total_cost > 100
 
 ```
 
+# Highest Cost Orders (Amazon)
+Find the customer with the highest daily total order cost between 2019-02-01 to 2019-05-01. If customer had more than one order on a certain day, sum the order costs on daily basis. Output their first name, total cost of their items, and the date. 
+For simplicity, you can assume that every first name in the dataset is unique. 
 ```sql
+-- PLAN
+-- 1. filter data for specific date
+-- 2. check if customer had more than one order
+WITH tmp AS (
+SELECT C.first_name
+        , O.total_order_cost
+        , O.order_date
+FROM customers C
+JOIN orders O on C.id = O.cust_id
+WHERE O.order_date BETWEEN '2019-02-01' AND '2019-05-01'
+-- ORDER BY 1, 3
+)
+
+SELECT first_name
+        , order_date
+        , RANK() OVER (ORDER BY SUM(total_order_cost) DESC ) AS rnk
+        , SUM(total_order_cost) AS total_cost
+FROM tmp
+GROUP BY first_name, order_date
+ORDER BY total_cost DESC
+LIMIT 1
+
+
+-- method 2
+WITH daily_cost AS(
+SELECT  C.id
+        , C.first_name
+        , SUM(O.total_order_cost) as total_cost
+        , O.order_date
+FROM customers AS C
+JOIN orders O ON C.id = O.cust_id
+WHERE DATE(O.order_date) BETWEEN '2019-02-01' and '2019-05-01'
+GROUP BY C.id, O.order_date
+),
+
+ranking AS(
+SELECT 
+    first_name,
+    total_cost,
+    order_date,
+    RANK() OVER (ORDER BY total_cost desc) AS rnk
+FROM daily_cost
+)
+
+SELECT first_name
+        , total_cost
+        , order_date
+FROM ranking 
+WHERE rnk = 1
 ```
 
+# Customer Revenue In March (Facebook)
+Calculate the total revenue from each customer in March 2019. Include only customers who were active in March 2019. 
 ```sql
+WITH tmp AS (
+SELECT * 
+FROM orders
+WHERE MONTH(order_date) = '03'
+)
+
+SELECT cust_id
+        , SUM(total_order_cost) AS total_cost
+FROM tmp
+GROUP BY cust_id
+ORDER BY total_cost DESC
+
+method2:
+SELECT cust_id
+        , SUM(total_order_cost) AS total_cost
+FROM orders
+WHERE MONTH(order_date) = '03'
+GROUP BY cust_id
+ORDER BY total_cost DESC
 ```
 
+# Users By Average Session Time (Facebook, July 2021) 
+Calculate each user's average session time. A session is defined as the time difference between a page_load and page_exit. For simplicity, assume a user has only 1 session per day and if there are multiple of the same events on that day, consider only the latest page_load and earliest page_exit. Output the user_id and their average session time.
 ```sql
+-- PLAN
+-- 1. join load table to exit table
+-- 2. for specific date use the latest page_load and earliest page exit
+-- 3. Average time difference
+
+WITH tmp AS (
+SELECT T1.user_id
+        , DATE(T1.timestamp) AS 'load_date'
+        , T1.action AS 'action_load'
+        , T1.timestamp AS 'load_timestamp'
+        , DATE(T2.timestamp) AS 'exit_date'
+        , T2.action AS 'action_exit'
+        , T2.timestamp AS 'exit_timestamp'
+FROM facebook_web_log as T1
+JOIN facebook_web_log AS T2
+ON T1.user_id = T2.user_id
+AND DATE(T1.timestamp) = DATE(T2.timestamp)
+AND T2.action = "page_exit"
+WHERE T1.action = "page_load"
+),
+
+tmp2 AS (
+SELECT user_id
+        , load_date
+        , MAX(load_timestamp) AS load_timestamp
+        , MIN(exit_timestamp) AS exit_timestamp
+FROM tmp
+GROUP BY user_id, load_date
+)
+
+SELECT 
+user_id
+, AVG(TIMESTAMPDIFF(second, load_timestamp, exit_timestamp)) AS timediff
+FROM tmp2
+GROUP BY user_id
+
 ```
 
 ```sql
