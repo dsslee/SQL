@@ -37,7 +37,6 @@ ON C.id = O.cust_id
 ORDER BY C.first_name, O.order_details
 ```
 
-
 # Number Of Bathrooms And Bedrooms (Airbnb)
 Find the average number of bathrooms and bedrooms for each city’s property types. Output the result along with the city name and the property type.
 ```sql
@@ -49,26 +48,48 @@ FROM airbnb_search_details
 GROUP BY city, property_type
 ```
 
+# Total Cost Of Orders
+Find the total cost of each customer's orders. Output customer's id, first name, and the total order cost. Order records by customer's first name alphabetically.
+```sql
+-- PLAN
+-- 1. join table by customer id
+-- 2. sum cost by customer
+-- 3. sort by first_name
 
+SELECT C.id
+        , C.first_name
+        , SUM(O.total_order_cost) AS total_order_cost
+FROM customers C
+JOIN orders O ON C.id = O.cust_id
+GROUP BY C.id
+ORDER BY C.first_name
+```
+
+
+#
 ```sql
 ```
 
+#
 ```sql
 ```
 
+#
 ```sql
 ```
 
-```sql
-```
-```sql
-```
-
+#
 ```sql
 ```
 
+#
 ```sql
 ```
 
+#
+```sql
+```
+
+#
 ```sql
 ```
