@@ -1,0 +1,75 @@
+
+# Salaries Differences (Dropbox)
+Write a query that calculates the difference between the highest salaries found in the marketing and engineering departments. Output just the absolute difference in salaries.
+```sql
+-- FI
+SELECT ABS( (-- find max salary in marketing department
+            SELECT MAX(salary) 
+            FROM db_employee E
+            JOIN db_dept D ON E.department_id = D.id
+            WHERE D.department = "marketing")
+            -
+            (-- find max salary in marketing engineering
+            SELECT MAX(salary) 
+            FROM db_employee E
+            JOIN db_dept D ON E.department_id = D.id
+            WHERE D.department = "engineering")
+           ) AS salary_difference
+           
+           
+SELECT ABS ( MAX(CASE WHEN D.department = "marketing" THEN E.salary ELSE NULL END) - 
+             MAX(CASE WHEN D.department = "engineering" THEN E.salary ELSE NULL END) 
+            ) AS salary_diff
+FROM db_employee E
+LEFT JOIN db_dept D 
+ON E.department_id = D.id;
+```
+
+# Customers Details (Amazon)
+```sql
+SELECT 
+C.first_name
+, C.last_name
+, C.city
+, O.order_details
+FROM customers C
+LEFT JOIN orders O -- since we also want customers who did not make an order as well
+ON C.id = O.cust_id
+ORDER BY C.first_name, O.order_details
+```
+
+
+# Number Of Bathrooms And Bedrooms (Airbnb)
+Find the average number of bathrooms and bedrooms for each city’s property types. Output the result along with the city name and the property type.
+```sql
+SELECT city
+        , property_type
+        , AVG(bathrooms)
+        , AVG(bedrooms)        
+FROM airbnb_search_details
+GROUP BY city, property_type
+```
+
+
+```sql
+```
+
+```sql
+```
+
+```sql
+```
+
+```sql
+```
+```sql
+```
+
+```sql
+```
+
+```sql
+```
+
+```sql
+```
