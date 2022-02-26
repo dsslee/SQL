@@ -78,7 +78,32 @@ FROM (-- rank consumption
 WHERE data1.rnk =1
 ```
 
+# Finding User Purchases
+Write a query that'll identify returning active users. A returning active user is a user that has made a second purchase within 7 days of any other of their purchases. Output a list of user_ids of these returning active users.
 ```sql
+-- PLAN
+-- 1. find previous purchase to every row
+-- 2. find difference between the current order
+-- 3. filter diff within 7 days
+method1: using lag
+WITH temp AS (
+SELECT user_id
+        , created_at
+        , lag(created_at) OVER (PARTITION BY user_id ORDER BY created_at) AS previous_purchase_date
+FROM amazon_transactions 
+)
+
+SELECT DISTINCT(user_id)
+FROM temp
+WHERE DATEDIFF(created_at, previous_purchase_date) <= 7
+
+-- method 2: joining 
+SELECT DISTINCT t1.user_id
+-- SELECT *
+FROM amazon_transactions t1, amazon_transactions t2
+WHERE t1.user_id = t2.user_id 
+AND ABS(DATEDIFF(t1.created_at, t2.created_at)) <= 7 
+AND t1.id != t2.id -- but can't be same id
 ```
 
 ```sql
