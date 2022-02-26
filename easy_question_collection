@@ -2,18 +2,17 @@
 # Salaries Differences (Dropbox)
 Write a query that calculates the difference between the highest salaries found in the marketing and engineering departments. Output just the absolute difference in salaries.
 ```sql
--- FI
 SELECT ABS( (-- find max salary in marketing department
             SELECT MAX(salary) 
             FROM db_employee E
             JOIN db_dept D ON E.department_id = D.id
-            WHERE D.department = "marketing")
+            WHERE D.department = 'marketing')
             -
             (-- find max salary in marketing engineering
             SELECT MAX(salary) 
             FROM db_employee E
             JOIN db_dept D ON E.department_id = D.id
-            WHERE D.department = "engineering")
+            WHERE D.department = 'engineering')
            ) AS salary_difference
            
            
