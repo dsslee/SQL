@@ -1,4 +1,4 @@
-# Acceptance Rate By Date (Facebook)
+# Acceptance Rate By Date (Facebook, Nov 2020)
 What is the overall friend acceptance rate by date? Your output should have the rate of acceptances by the date the request was sent. Order by the earliest date to latest.
 Assume that each friend request starts by a user sending (i.e., user_id_sender) a friend request to another user (i.e., user_id_receiver) that's logged in the table with action = 'sent'. If the request is accepted, the table logs action = 'accepted'. If the request is not accepted, no record of action = 'accepted' is logged.
 
@@ -25,7 +25,7 @@ GROUP BY S.date
 ORDER BY S.date
 ```
 
-# Highest Energy Consumption (Facebook)
+# Highest Energy Consumption (Facebook, March 2020)
 Find the date with the highest total energy consumption from the Meta/Facebook data centers. Output the date along with the total energy consumption across all data centers.
 ```sql
 -- Plan
@@ -79,7 +79,7 @@ FROM (-- rank consumption
 WHERE data1.rnk =1
 ```
 
-# Finding User Purchases (Amazon)
+# Finding User Purchases (Amazon, Dec 2020)
 Write a query that'll identify returning active users. A returning active user is a user that has made a second purchase within 7 days of any other of their purchases. Output a list of user_ids of these returning active users.
 ```sql
 -- PLAN
@@ -205,7 +205,7 @@ AND total_cost > 100
 
 ```
 
-# Highest Cost Orders (Amazon)
+# Highest Cost Orders (Amazon, May 2019)
 Find the customer with the highest daily total order cost between 2019-02-01 to 2019-05-01. If customer had more than one order on a certain day, sum the order costs on daily basis. Output their first name, total cost of their items, and the date. 
 For simplicity, you can assume that every first name in the dataset is unique. 
 ```sql
@@ -260,7 +260,7 @@ FROM ranking
 WHERE rnk = 1
 ```
 
-# Customer Revenue In March (Facebook)
+# Customer Revenue In March (Facebook, July 2018)
 Calculate the total revenue from each customer in March 2019. Include only customers who were active in March 2019. 
 ```sql
 WITH tmp AS (
@@ -325,189 +325,40 @@ GROUP BY user_id
 
 ```
 
-# Monthly Percentage Difference
-Given a table of purchases by date, calculate the month-over-month percentage change in revenue. The output should include the year-month date (YYYY-MM) and percentage change, rounded to the 2nd decimal point, and sorted from the beginning of the year to the end of the year.
-The percentage change column will be populated from the 2nd month forward and can be calculated as ((this month's revenue - last month's revenue) / last month's revenue)*100.
-```sql
--- PLAN
--- 1. make yearmonth feature
--- 2. find month sum
--- 3. lag monthly sum
--- 4. find percentage change: ((this month's revenue - last month's revenue) / last month's revenue)*100.
+# Monthly Churn Rate (Natera, Nov 2021)
+Calculate the churn rate of September 2021 in percentages. The churn rate is the difference between the number of customers on the first day of the month and on the last day of the month, divided by the number of customers on the first day of a month. 
+Assume that if customer's contract_end is NULL, their contract is still active. Additionally, if a customer started or finished their contract on a certain day, they should still be counted as a customer on that day.  
+GIVEN TABLE: natera_subscriptions 
+|columns | dtype |
+|--|--|
+|user_id | int |
+|contract_start | datetime |
+|contract_end | datetime |
 
-method1 : groupby to find montly sum
-WITH tmp AS (-- monthly sum
-SELECT date_format(created_at, '%Y-%m') AS yearmonth
-        , SUM(value) AS monthly_sum
-        -- , LAG(SUM(value), 1) OVER(ORDER BY yearmonth)
-FROM sf_transactions
-GROUP BY yearmonth
+```sql
+-- PLAN 
+-- 1. filter to september
+-- 1. find the number of customers on the first day
+-- 2. find the number of customers on the last day
+
+WITH tmp AS ( -- filter customers
+SELECT * 
+FROM natera_subscriptions
+WHERE contract_start <= '2021-09-01'
+AND (contract_end >= '2021-09-01' OR contract_end IS NULL)
 ),
 
-tmp2 AS (-- lag
-SELECT yearmonth
-        , monthly_sum
-        , LAG(monthly_sum, 1) OVER(ORDER BY yearmonth) AS prev_monthly_sum
+tmp2 AS ( -- Flag 1 for customers who cancelled in sept
+SELECT *
+        , CASE WHEN contract_end < '2021-09-30' THEN 1 ELSE 0 END AS canceled_in_sept
 FROM tmp
 )
 
-SELECT yearmonth
-    , ROUND((((monthly_sum - prev_monthly_sum)/prev_monthly_sum)*100),2) AS precentage_change
+SELECT (SUM(canceled_in_sept) / COUNT(*))*100 AS churn_rate
 FROM tmp2
--- ORDER BY yearmonth;
-
-
-method2: sum over() to find monthly sum
-WITH tmp AS (-- monthly sum
-SELECT DISTINCT date_format(created_at, '%Y-%m') AS yearmonth
-        , SUM(value) OVER (PARTITION BY YEAR(created_at), MONTH(created_at)) AS monthly_sum
-FROM sf_transactions
-),
-
-tmp2 AS (-- lag
-SELECT yearmonth
-        , monthly_sum
-        , LAG(monthly_sum, 1) OVER(ORDER BY yearmonth) AS prev_monthly_sum
-FROM tmp
-)
-
-SELECT yearmonth
-    , ROUND((((monthly_sum - prev_monthly_sum)/prev_monthly_sum)*100),2) AS precentage_change
-FROM tmp2
--- ORDER BY yearmonth;
 ```
 
-# Popularity Percentage
-Find the popularity percentage for each user on Meta/Facebook. The popularity percentage is defined as the total number of friends the user has divided by the total number of users on the platform, then converted into a percentage by multiplying by 100.
-Output each user along with their popularity percentage. Order records in ascending order by user id.
-The 'user1' and 'user2' column are pairs of friends.
-```sql
--- PLAN
--- 1. total num of friends / total number of users on platform
-WITH tmp AS(
-SELECT user1
-        , COUNT(user2) as f1
-FROM facebook_friends
-GROUP BY user1
-UNION ALL
-SELECT user2
-        , COUNT(user1) as f2
-FROM facebook_friends
-GROUP BY user2
-ORDER BY user1
-)
-
-SELECT user1
-        , SUM(f1) / COUNT(user1) OVER() * 100 AS popularity_percent
-FROM tmp
-GROUP BY user1
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
-```sql
-```
-
+#
 ```sql
 ```
 
