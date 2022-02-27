@@ -178,3 +178,53 @@ WHERE rnk = 1
 ;
 ```
 
+
+# Best Selling Item
+Find the best selling item for each month (no need to separate months by year) where the biggest total invoice was paid. The best selling item is calculated using the formula (unitprice * quantity). Output the description of the item along with the amount paid.
+```sql
+/*WITH tmp AS (
+SELECT MONTH(invoicedate) AS month
+        , description
+        , sum(unitprice * quantity) AS best_item
+        , rank() OVER (PARTITION BY MONTH(invoicedate) ORDER BY sum(unitprice * quantity) DESC) AS rnk
+   FROM online_retail
+   GROUP BY MONTH,
+            description
+
+)
+
+
+SELECT MONTH,
+       description,
+       total_paid
+FROM
+  (SELECT date_part('month', invoicedate) AS MONTH,
+          description,
+          sum(unitprice * quantity) AS total_paid,
+          rank() OVER (PARTITION BY date_part('month', invoicedate)
+                       ORDER BY sum(unitprice * quantity) DESC) AS rnk
+   FROM online_retail
+   GROUP BY MONTH,
+            description) tmp
+WHERE rnk = 1
+*/
+
+WITH tmp AS (
+select * 
+    , MONTH(invoicedate) AS month
+    , SUM(unitprice * quantity) AS best_item
+FROM online_retail
+GROUP BY MONTH, description
+ORDER BY invoicedate
+),
+
+tmp2 AS(
+SELECT month
+        , description
+        , best_item
+        , RANK() OVER (PARTITION BY month ORDER BY best_item DESC) AS rnk 
+FROM tmp)
+
+SELECT * FROM tmp2
+WHERE rnk = 1
+```
