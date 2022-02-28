@@ -359,7 +359,64 @@ FROM tmp2
 ```
 
 #
+I only looked briefly at question 3 but I think it asked to write a query to calculate the proper compensation amount per customer.
+* compensation was 1000won(each product) for 10 or more days, and 3000won 15 or more days.
 ```sql
+-- if I was given the following table:
+-- Table1: orders
+--  order_date   | date (YYYY-MM-DD)
+--  order_id     | INT
+--  customer_id  | INT
+--  product_id   | INT
+--  order_price  | INT
+--  delivery_id  | INT
+
+-- Table2: customers
+--  cutomer_id    | INT
+--  customer_name | INT
+
+-- Table3: delivery
+--  id          | INT
+--  delivery_id | INT
+--  expected_delivery_day | date (YYYY-MM-DD)
+--  arrived_delivery_day  | date
+
+-- PLAN
+-- 1. Join tables
+-- 2. take care of null in arrived_delivery_day with current date
+-- 3. calculate late delivery day
+-- 4. calculate compensation num
+-- 5. sum by customer
+
+WITH tmp AS (
+SELECT O.customer_id
+			, O.order_id 
+			, O.product_id
+			, O.delivery_id
+			, D.expected_delivery_day
+			, CASE WHEN D.arrived_delivery_day IS NULL THEN CURRENT_DATE() END AS arrived_delivery_day
+FROM ORDERS O
+JOIN customers C ON O.customer_id = C.customer_id
+JOIN delivery D on O.order_id = D.id
+AND O.deliver_id = D.delivery_id
+),
+
+tmp2 AS (
+SELECT *
+			, DATEDIFF(expected_delivery_day, arrived_delivery_day) AS diff_day
+			, CASE WHEN diff_day >= 10 THEN 1000 
+             WHEN diff_day >= 15 THEN 3000 
+						 ELSE NULL END AS compensation_price
+FROM tmp
+)
+
+SELECT customer_id
+			, SUM(compensation_price) as total
+FROM tmp2
+GROUP BY customer_id
+ORDER BY SUM(compensation_price) DESC
+
+```
 ```
 
 ```sql
