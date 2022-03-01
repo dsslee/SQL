@@ -416,8 +416,10 @@ FROM tmp2
 GROUP BY customer_id
 ORDER BY SUM(compensation_price) DESC
 
-```
+#
+```sql
 ```
 
+#
 ```sql
 ```
