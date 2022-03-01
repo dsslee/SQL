@@ -84,9 +84,3 @@ submission table: submission_id, hacker_id, challenge_id, score(of submission)
 */
 ```
 
-
-# (Lvl: Medium)
-**SOLUTIONS**
-```sql
-```
-
