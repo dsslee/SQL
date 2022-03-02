@@ -1,0 +1,110 @@
+
+# Salaries Differences (Dropbox, Nov 2020)
+Write a query that calculates the difference between the highest salaries found in the marketing and engineering departments. Output just the absolute difference in salaries.
+```sql
+-- PLAN
+-- 1. Find max salary in marketing department
+-- 1. Find max salary in engineering department
+
+SELECT ABS( (-- find max salary in marketing department
+            SELECT MAX(salary) 
+            FROM db_employee E
+            JOIN db_dept D ON E.department_id = D.id
+            WHERE D.department = 'marketing')
+            -
+            (-- find max salary in engineering department
+            SELECT MAX(salary) 
+            FROM db_employee E
+            JOIN db_dept D ON E.department_id = D.id
+            WHERE D.department = 'engineering')
+           ) AS salary_difference
+           
+           
+SELECT ABS ( MAX(CASE WHEN D.department = "marketing" THEN E.salary ELSE NULL END) - 
+             MAX(CASE WHEN D.department = "engineering" THEN E.salary ELSE NULL END) 
+            ) AS salary_diff
+FROM db_employee E
+LEFT JOIN db_dept D 
+ON E.department_id = D.id;
+```
+
+# Customers Details (Amazon)
+```sql
+SELECT 
+C.first_name
+, C.last_name
+, C.city
+, O.order_details
+FROM customers C
+LEFT JOIN orders O -- since we also want customers who did not make an order as well
+ON C.id = O.cust_id
+ORDER BY C.first_name, O.order_details
+```
+
+# Number Of Bathrooms And Bedrooms (Airbnb)
+Find the average number of bathrooms and bedrooms for each city’s property types. Output the result along with the city name and the property type.
+```sql
+SELECT city
+        , property_type
+        , AVG(bathrooms)
+        , AVG(bedrooms)        
+FROM airbnb_search_details
+GROUP BY city, property_type
+```
+
+# Total Cost Of Orders
+Find the total cost of each customer's orders. Output customer's id, first name, and the total order cost. Order records by customer's first name alphabetically.
+```sql
+-- PLAN
+-- 1. join table by customer id
+-- 2. sum cost by customer
+-- 3. sort by first_name
+
+SELECT C.id
+        , C.first_name
+        , SUM(O.total_order_cost) AS total_order_cost
+FROM customers C
+JOIN orders O ON C.id = O.cust_id
+GROUP BY C.id
+ORDER BY C.first_name
+```
+
+
+# Finding Updated Records (Microsoft, Nov 2020)
+We have a table with employees and their salaries, however, some of the records are old and contain outdated salary information. 
+Find the current salary of each employee assuming that salaries increase each year. 
+Output their id, first name, last name, department ID, and current salary. Order your list by employee ID in ascending order.
+```sql
+-- method1: using group by
+SELECT id
+        , first_name
+        , last_name
+        , department_id	
+        , MAX(salary) AS max_salary
+FROM ms_employee_salary
+GROUP BY id;
+
+-- method2: using rank
+WITH tmp AS (
+SELECT *  
+, RANK() OVER (PARTITION BY id ORDER BY salary DESC) AS rnk
+FROM ms_employee_salary
+ORDER BY id
+)
+
+SELECT id
+        , first_name
+        , last_name
+        , department_id	
+        , salary
+FROM tmp
+WHERE rnk=1;
+```
+
+#
+```sql
+```
+
+#
+```sql
+```
