@@ -100,11 +100,3 @@ SELECT id
 FROM tmp
 WHERE rnk=1;
 ```
-
-#
-```sql
-```
-
-#
-```sql
-```
