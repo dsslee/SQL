@@ -28,7 +28,7 @@ LEFT JOIN db_dept D
 ON E.department_id = D.id;
 ```
 
-# Customers Details (Amazon)
+# Customers Details (Amazon, Nov 2019)
 ```sql
 SELECT 
 C.first_name
@@ -99,4 +99,8 @@ SELECT id
         , salary
 FROM tmp
 WHERE rnk=1;
+```
+
+# 
+```sql
 ```
