@@ -420,6 +420,3 @@ ORDER BY SUM(compensation_price) DESC
 ```sql
 ```
 
-#
-```sql
-```
