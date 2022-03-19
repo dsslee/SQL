@@ -15,3 +15,7 @@ print(Z)
 # Create a vector with values ranging from 10 to 49
 Z = np.arange(10,50)
 print(Z)
+
+#Reverse a vector
+Z = np.arange(50)
+Z = Z[::-1]
