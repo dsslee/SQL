@@ -27,3 +27,7 @@ print(Z)
 # create a 3x3 identity matrix 
 Z = np.eye(3)
 print(Z)
+
+# Create a 3x3x3 array with random values
+Z = np.randm.random((3,3,3))
+print(Z)
