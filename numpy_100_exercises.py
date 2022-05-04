@@ -32,3 +32,4 @@ print(Z)
 Z = np.randm.random((3,3,3))
 print(Z)
 
+print(Z)
