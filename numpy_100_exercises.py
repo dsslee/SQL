@@ -31,3 +31,9 @@ print(Z)
 # Create a 3x3x3 array with random values
 Z = np.randm.random((3,3,3))
 print(Z)
+
+# Create a 10x10 array with random values and find the
+minimum and maximum values
+Z = np.random.random((10,10))
+Zmin, Zmax = Z.min(), Z.max()
+print(Zmin, Zmax)
