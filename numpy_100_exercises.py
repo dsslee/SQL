@@ -37,3 +37,8 @@ minimum and maximum values
 Z = np.random.random((10,10))
 Zmin, Zmax = Z.min(), Z.max()
 print(Zmin, Zmax)
+
+# Create a random vector of size 30 and find the mean value
+Z = np.random.random(30)
+m = Z.mean()
+print(m)
