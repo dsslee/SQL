@@ -42,3 +42,7 @@ print(Zmin, Zmax)
 Z = np.random.random(30)
 m = Z.mean()
 print(m)
+
+# Create a 2d array with 1 on the border and 0 inside
+Z = np.ones(10,10)
+Z[1:-1, 1:-1] = 0
