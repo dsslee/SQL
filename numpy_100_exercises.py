@@ -46,3 +46,8 @@ print(m)
 # Create a 2d array with 1 on the border and 0 inside
 Z = np.ones(10,10)
 Z[1:-1, 1:-1] = 0
+
+# Create a 5x5 matrix with values 1,2,3,4 just below the
+diagonal
+Z = np.diag(1+np.arange(4),k=-1)
+print(Z)
