@@ -51,3 +51,9 @@ Z[1:-1, 1:-1] = 0
 diagonal
 Z = np.diag(1+np.arange(4),k=-1)
 print(Z)
+
+# Create a 8x8 matrix and fill it with a checkerboard pattern
+Z = np.zeros((8,8),dtype=int)
+Z[1::2,::2] = 1
+Z[::2,1::2] = 1
+print(Z)
