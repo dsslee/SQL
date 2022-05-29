@@ -63,3 +63,5 @@ the 100th element?
 print(np.unravel_index(100,(6,7,8)))
 
 # Create a checkerboard 8x8 matrix using the tile function
+Z = np.tile( np.array([[0,1],[1,0]]), (4,4))
+print(Z)
