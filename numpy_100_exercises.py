@@ -65,3 +65,9 @@ print(np.unravel_index(100,(6,7,8)))
 # Create a checkerboard 8x8 matrix using the tile function
 Z = np.tile( np.array([[0,1],[1,0]]), (4,4))
 print(Z)
+
+# Normalize a 5x5 random matrix
+Z = np.random.random((5,5))
+Zmax, Zmin = Z.max(), Z.min()
+Z = (Z - Zmin)/(Zmax - Zmin)
+print(Z)
