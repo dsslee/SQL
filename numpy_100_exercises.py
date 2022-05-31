@@ -71,3 +71,7 @@ Z = np.random.random((5,5))
 Zmax, Zmin = Z.max(), Z.min()
 Z = (Z - Zmin)/(Zmax - Zmin)
 print(Z)
+
+# Multiply a 5x3 matrix by a 3x2 matrix (real matrix product)
+Z = np.dot(np.ones((5,3)), np.ones((3,2)))
+print(Z)
