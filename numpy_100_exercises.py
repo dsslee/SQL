@@ -80,3 +80,7 @@ print(Z)
 and 8, in place.
 Z = np.arange(11)
 Z[(3 < Z) & (Z <= 8)] *= -1
+
+#How to round away from zero a float array ?
+Z = np.random.uniform(-10,+10,10)
+print (np.trunc(Z + np.copysign(0.5, Z)))
