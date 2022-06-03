@@ -84,3 +84,8 @@ Z[(3 < Z) & (Z <= 8)] *= -1
 #How to round away from zero a float array ?
 Z = np.random.uniform(-10,+10,10)
 print (np.trunc(Z + np.copysign(0.5, Z)))
+
+# Extract the integer part of a random array using 5 different
+methods
+Z = np.random.uniform(0,10,10)
+print (Z - Z%1)
