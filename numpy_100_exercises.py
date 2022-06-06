@@ -92,3 +92,8 @@ print (Z - Z%1)
 print (np.floor(Z))
 print (np.ceil(Z)-1)
 print (Z.astype(int))
+
+# Create a 5x5 matrix with row values ranging from 0 to 4
+Z = np.zeros((5,5))
+Z += np.arange(6)
+print(Z)
