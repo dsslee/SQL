@@ -97,3 +97,6 @@ print (Z.astype(int))
 Z = np.zeros((5,5))
 Z += np.arange(6)
 print(Z)
+
+# Create a vector of size 10 with values ranging from 0 to 1,
+both excluded
