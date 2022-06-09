@@ -104,3 +104,4 @@ Z = np.linspace(0,1,12,endpoint=True)[1:-1]
 print(Z)
 
 # Create a random vector of size 10 and sort it
+Z = np.random.random(10)
