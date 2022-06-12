@@ -107,3 +107,7 @@ print(Z)
 Z = np.random.random(10)
 Z.sort()
 print(Z)
+
+#How to sum a small array faster than np.sum?
+Z = np.arange(10)
+np.add.reduce(Z)
