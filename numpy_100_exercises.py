@@ -113,3 +113,4 @@ Z = np.arange(10)
 np.add.reduce(Z)
 
 # Consider two random array A anb B, check if they are equal
+A = np.random.randint(0,2,5)
