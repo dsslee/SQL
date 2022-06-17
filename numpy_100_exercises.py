@@ -117,3 +117,8 @@ A = np.random.randint(0,2,5)
 B = np.random.randint(0,2,5)
 equal = np.allclose(A,B)
 print(equal)
+
+# Make an array immutable
+Z = np.zeros(10)
+Z.flags.writeable = False
+Z[0] = 1
