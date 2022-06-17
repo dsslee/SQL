@@ -122,3 +122,5 @@ print(equal)
 Z = np.zeros(10)
 Z.flags.writeable = False
 Z[0] = 1
+
+# Create a random vector of size 10 and sort it
