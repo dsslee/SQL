@@ -124,3 +124,5 @@ Z.flags.writeable = False
 Z[0] = 1
 
 # Create a random vector of size 10 and sort it
+Z = np.random.random(10)
+Z.sort()
