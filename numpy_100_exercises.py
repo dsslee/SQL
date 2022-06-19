@@ -127,4 +127,6 @@ Z[0] = 1
 Z = np.random.random(10)
 Z.sort()
 
-# How to sum a small array faster than np.sum? (
+# How to sum a small array faster than np.sum? 
+Z = np.arange(10)
+np.add.reduce(Z)
