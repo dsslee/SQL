@@ -130,3 +130,9 @@ Z.sort()
 # How to sum a small array faster than np.sum? 
 Z = np.arange(10)
 np.add.reduce(Z)
+
+# Consider two random array A anb B, check if they are equal
+A = np.random.randint(0,2,5)
+B = np.random.randint(0,2,5)
+equal = np.allclose(A,B)
+print(equal)
