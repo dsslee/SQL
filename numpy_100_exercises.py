@@ -137,7 +137,10 @@ B = np.random.randint(0,2,5)
 equal = np.allclose(A,B)
 print(equal)
 
-#Make an array immutable
+# Make an array immutable
 Z = np.zeros(10)
 Z.flags.writeable = False
 Z[0] = 1
+
+# Consider a random 10x2 matrix representing cartesian
+coordinates, convert them to polar coordinates 
