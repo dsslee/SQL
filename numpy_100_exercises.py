@@ -138,3 +138,6 @@ equal = np.allclose(A,B)
 print(equal)
 
 #Make an array immutable
+Z = np.zeros(10)
+Z.flags.writeable = False
+Z[0] = 1
