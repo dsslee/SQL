@@ -144,3 +144,5 @@ Z[0] = 1
 
 # Consider a random 10x2 matrix representing cartesian
 coordinates, convert them to polar coordinates 
+Z = np.random.random((10,2))
+X,Y = Z[:,0], Z[:,1]
