@@ -150,3 +150,9 @@ R = np.sqrt(X**2+Y**2)
 T = np.arctan2(Y,X)
 print(R)
 print(T)
+
+# Create random vector of size 10 and replace the maximum
+value by 0
+Z = np.random.random(10)
+Z[Z.argmax()] = 0
+print(Z)
