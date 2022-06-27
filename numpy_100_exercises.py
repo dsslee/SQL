@@ -156,3 +156,10 @@ value by 0
 Z = np.random.random(10)
 Z[Z.argmax()] = 0
 print(Z)
+
+# Create a structured array with x and y coordinates covering
+the [0,1]x[0,1] area
+Z = np.zeros((10,10), [('x',float),('y',float)])
+Z['x'], Z['y'] = np.meshgrid(np.linspace(0,1,10),
+np.linspace(0,1,10))
+print(Z)
