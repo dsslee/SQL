@@ -180,3 +180,6 @@ for dtype in [np.float32, np.float64]:
 print(np.finfo(dtype).min)
 print(np.finfo(dtype).max)
 print(np.finfo(dtype).eps)
+
+
+# Generate a generic 2D Gaussian-like array
