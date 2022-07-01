@@ -183,3 +183,7 @@ print(np.finfo(dtype).eps)
 
 
 # Generate a generic 2D Gaussian-like array
+X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
+D = np.sqrt(X*X+Y*Y)
+sigma, mu = 1.0, 0.0
+G = np.exp(-(
