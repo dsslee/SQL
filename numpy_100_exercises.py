@@ -189,4 +189,4 @@ sigma, mu = 1.0, 0.0
 G = np.exp(-((D-mu)**2 / ( 2.0 * sigma**2 ) ) )
 print(G)
 
-# new
+# How to randomly place p elements in a 2D array?
