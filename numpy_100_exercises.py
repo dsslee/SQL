@@ -201,3 +201,5 @@ D = np.sqrt(X*X+Y*Y)
 sigma, mu = 1.0, 0.0
 G = np.exp(-( (D-mu)**2 / ( 2.0 * sigma**2 ) ) )
 print(G)
+
+# How to I sort an array by the nth column?
