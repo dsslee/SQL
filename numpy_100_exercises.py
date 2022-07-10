@@ -196,3 +196,8 @@ Z = np.zeros((n,n))
 np.put(Z, np.random.choice(range(n*n), p, replace=False),1)
 
 # Generate a generic 2D Gaussian-like array
+X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
+D = np.sqrt(X*X+Y*Y)
+sigma, mu = 1.0, 0.0
+G = np.exp(-( (D-mu)**2 / ( 2.0 * sigma**2 ) ) )
+print(G)
