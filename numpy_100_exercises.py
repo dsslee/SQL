@@ -204,5 +204,4 @@ print(G)
 
 # How to I sort an array by the nth column?
 Z = np.random.randint(0,10,(3,3))
-print(Z)
 print(Z[Z[:,1].argsort()])
