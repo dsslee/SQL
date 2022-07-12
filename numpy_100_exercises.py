@@ -205,3 +205,7 @@ print(G)
 # How to I sort an array by the nth column?
 Z = np.random.randint(0,10,(3,3))
 print(Z[Z[:,1].argsort()])
+
+# How to tell if a given 2D array has null columns?
+Z = np.random.randint(0,3,(3,10))
+print((~Z.any(axis=0)).any())
