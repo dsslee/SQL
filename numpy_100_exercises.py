@@ -58,7 +58,7 @@ diagonal.
 Z = np.diag(1+np.arange(4),k=-1)
 print(Z)
 
-# Create a 8x8 matrix and fill it with a checkerboard pattern
+# Create a 8x8 matrix and fill it with a checkerboard pattern.
 Z = np.zeros((8,8),dtype=int)
 Z[1::2,::2] = 1
 Z[::2,1::2] = 1
@@ -68,17 +68,17 @@ print(Z)
 the 100th element?
 print(np.unravel_index(100,(6,7,8)))
 
-# Create a checkerboard 8x8 matrix using the tile function
+# Create a checkerboard 8x8 matrix using the tile function.
 Z = np.tile( np.array([[0,1],[1,0]]), (4,4))
 print(Z)
 
-# Normalize a 5x5 random matrix
+#Q20) Normalize a 5x5 random matrix.
 Z = np.random.random((5,5))
 Zmax, Zmin = Z.max(), Z.min()
 Z = (Z - Zmin)/(Zmax - Zmin)
 print(Z)
 
-# Multiply a 5x3 matrix by a 3x2 matrix (real matrix product)
+# Multiply a 5x3 matrix by a 3x2 matrix (real matrix product).
 Z = np.dot(np.ones((5,3)), np.ones((3,2)))
 print(Z)
 
