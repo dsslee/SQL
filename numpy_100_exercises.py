@@ -3,10 +3,10 @@ import numpy as np
 # Q1) print numpy versions
 print(np.__version__)
 
-#Q2) Show configuration
+# Show configuration
 np.show_config()
 
-#Q3) Create a null vector of size 10
+# Create a null vector of size 10
 print(np.zeros(10))
 
 # Create a null vector of size 10 but the fifth value which is 1
@@ -18,7 +18,7 @@ print(Z)
 Z = np.arange(10,50)
 print(Z)
 
-#Reverse a vector
+# Reverse a vector
 Z = np.arange(50)
 Z = Z[::-1]
 
