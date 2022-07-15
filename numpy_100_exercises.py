@@ -1,32 +1,32 @@
 import numpy as np
 
-# Q1) print numpy versions
+# Q1) print numpy versions.
 print(np.__version__)
 
-# Show configuration
+# Show configuration.
 np.show_config()
 
-# Create a null vector of size 10
+# Create a null vector of size 10.
 print(np.zeros(10))
 
-# Create a null vector of size 10 but the fifth value which is 1
+# Create a null vector of size 10 but the fifth value which is 1.
 Z = np.zeros(10)
 Z[4] = 1
 print(Z)
 
-# Create a vector with values ranging from 10 to 49
+# Create a vector with values ranging from 10 to 49.
 Z = np.arange(10,50)
 print(Z)
 
-# Reverse a vector
+# Reverse a vector.
 Z = np.arange(50)
 Z = Z[::-1]
 
-# Create a 3x3 matrix with values ranging from 0 to 8
+# Create a 3x3 matrix with values ranging from 0 to 8.
 Z = np.arange(9).reshape(3,3)
 print(Z)
 
-# Find indices of non-zero elements from [1,2,0,0,4,0] 
+# Find indices of non-zero elements from [1,2,0,0,4,0].
 nz = np.nonzero([1,2,0,0,4,0])
 print(nZ)
 
