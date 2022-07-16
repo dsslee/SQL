@@ -416,7 +416,38 @@ FROM tmp2
 GROUP BY customer_id
 ORDER BY SUM(compensation_price) DESC
 
-#
+# Show the number ofemployees in each age grouping from oldest to youngest, given table names "Employyes” with the fields -
+• employee_first_name (e.g. Adam)
+• employee_last_name (e.g. Smith)
+• date_of_birth (e.g. 17/09/1990)
+• employeeid (e.g. 123456)
+
 ```sql
+with tmp as( 
+-- find age
+select empfirstname
+       , emplastname
+       , employeeid
+       , empbirthdate
+       , cast(left(cast(current_date as varchar), 4) as int) - cast(right(cast(empbirthdate as varchar), 4) as int) as employee_age
+--  , (age(CURRENT_DATE,date(empbirthdate)), 2)
+from employees
+), 
+
+tmp2 as (--select * from tmp;
+select *, case when employee_age < 18 then 'Under 18'
+            when employee_age between 18 and 29 then '20s'
+            when employee_age between 30 and 39 then '30s'
+            when employee_age between 40 and 49 then '40s'
+            when employee_age between 50 and 59 then '50s'
+            when employee_age > 60 then 'Seniors'
+end as age_group
+from tmp
+)
+
+select age_group, count(*) as cnt
+from tmp2
+group by age_group
+order by age_group desc;
 ```
 
