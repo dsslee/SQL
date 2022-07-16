@@ -22,13 +22,19 @@ print(Z)
 Z = np.arange(50)
 Z = Z[::-1]
 
-# create a 3x3 matrix with values ranging from 0 to 8
+# Create a 3x3 matrix with values ranging from 0 to 8
 Z = np.arange(9).reshape(3,3)
 print(Z)
 
-# create a 3x3 identity matrix 
+# Find indices of non-zero elements from [1,2,0,0,4,0] 
+nz = np.nonzero([1,2,0,0,4,0])
+print(nZ)
+
+#Q10) Create a 3x3 identity matrix 
 Z = np.eye(3)
 print(Z)
+
+
 
 # Create a 3x3x3 array with random values
 Z = np.randm.random((3,3,3))
