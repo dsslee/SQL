@@ -108,41 +108,22 @@ print(Z)
 Z = np.linspace(0,1,12,endpoint=True)[1:-1]
 print(Z)
 
-# Create a random vector of size 10 and sort it
+# Create a random vector of size 10 and sort it.
 Z = np.random.random(10)
 Z.sort()
 print(Z)
 
-#How to sum a small array faster than np.sum?
+# How to sum a small array faster than np.sum?
 Z = np.arange(10)
 np.add.reduce(Z)
 
-# Consider two random array A anb B, check if they are equal
+# Consider two random array A anb B, check if they are equal.
 A = np.random.randint(0,2,5)
 B = np.random.randint(0,2,5)
 equal = np.allclose(A,B)
 print(equal)
 
-# Make an array immutable
-Z = np.zeros(10)
-Z.flags.writeable = False
-Z[0] = 1
-
-# Create a random vector of size 10 and sort it
-Z = np.random.random(10)
-Z.sort()
-
-# How to sum a small array faster than np.sum? 
-Z = np.arange(10)
-np.add.reduce(Z)
-
-# Consider two random array A anb B, check if they are equal
-A = np.random.randint(0,2,5)
-B = np.random.randint(0,2,5)
-equal = np.allclose(A,B)
-print(equal)
-
-# Make an array immutable
+# Make an array immutable.
 Z = np.zeros(10)
 Z.flags.writeable = False
 Z[0] = 1
