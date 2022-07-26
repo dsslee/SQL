@@ -104,8 +104,7 @@ Z = np.zeros((5,5))
 Z += np.arange(6)
 print(Z)
 
-# Create a vector of size 10 with values ranging from 0 to 1,
-both excluded
+# Q31) Create a vector of size 10 with values ranging from 0 to 1, both excluded.
 Z = np.linspace(0,1,12,endpoint=True)[1:-1]
 print(Z)
 
