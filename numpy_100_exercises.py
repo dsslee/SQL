@@ -157,7 +157,7 @@ Y = X + 0.5
 C = 1.0 / np.subtract.outer(X, Y)
 print(np.linalg.det(C))
 
-# Print the minimum and maximum representable value for
+#Q40) Print the minimum and maximum representable value for
 each numpy scalar type
 for dtype in [np.int8, np.int32, np.int64]:
 print(np.iinfo(dtype).min)
