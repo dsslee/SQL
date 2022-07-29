@@ -129,7 +129,7 @@ Z.flags.writeable = False
 Z[0] = 1
 
 # Consider a random 10x2 matrix representing cartesian
-coordinates, convert them to polar coordinates 
+coordinates, convert them to polar coordinates.
 Z = np.random.random((10,2))
 X,Y = Z[:,0], Z[:,1]
 R = np.sqrt(X**2+Y**2)
@@ -138,27 +138,26 @@ print(R)
 print(T)
 
 # Create random vector of size 10 and replace the maximum
-value by 0
+value by 0.
 Z = np.random.random(10)
 Z[Z.argmax()] = 0
 print(Z)
 
 # Create a structured array with x and y coordinates covering
-the [0,1]x[0,1] area
+the [0,1]x[0,1] area.
 Z = np.zeros((10,10), [('x',float),('y',float)])
 Z['x'], Z['y'] = np.meshgrid(np.linspace(0,1,10),
 np.linspace(0,1,10))
 print(Z)
 
 # Given two arrays, X and Y, construct the Cauchy matrix C
-(Cij = 1/(xi - yj))
+(Cij = 1/(xi - yj)).
 X = np.arange(8)
 Y = X + 0.5
 C = 1.0 / np.subtract.outer(X, Y)
 print(np.linalg.det(C))
 
-#Q40) Print the minimum and maximum representable value for
-each numpy scalar type
+#Q40) Print the minimum and maximum representable value for each numpy scalar type.
 for dtype in [np.int8, np.int32, np.int64]:
 print(np.iinfo(dtype).min)
 print(np.iinfo(dtype).max)
