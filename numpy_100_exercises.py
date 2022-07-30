@@ -171,7 +171,11 @@ np.set_printoptions(threshold=np.nan)
 Z = np.zeros((25,25))
 print(Z)
 
-
+# How to find the closest value (to a given scalar) in an array?
+Z = np.arange(100)
+v = np.random.uniform(0,100)
+index = (np.abs(Z-v)).argmin()
+print(Z[index])
 
 # Generate a generic 2D Gaussian-like array.
 X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
