@@ -166,7 +166,14 @@ print(np.finfo(dtype).min)
 print(np.finfo(dtype).max)
 print(np.finfo(dtype).eps)
 
-# Generate a generic 2D Gaussian-like array
+# How to print all the values of an array?
+np.set_printoptions(threshold=np.nan)
+Z = np.zeros((25,25))
+print(Z)
+
+
+
+# Generate a generic 2D Gaussian-like array.
 X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
 D = np.sqrt(X*X+Y*Y)
 sigma, mu = 1.0, 0.0
@@ -179,12 +186,6 @@ p = 3
 Z = np.zeros((n,n))
 np.put(Z, np.random.choice(range(n*n), p, replace=False),1)
 
-# Generate a generic 2D Gaussian-like array
-X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
-D = np.sqrt(X*X+Y*Y)
-sigma, mu = 1.0, 0.0
-G = np.exp(-( (D-mu)**2 / ( 2.0 * sigma**2 ) ) )
-print(G)
 
 # How to I sort an array by the nth column?
 Z = np.random.randint(0,10,(3,3))
