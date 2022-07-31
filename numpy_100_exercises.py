@@ -184,6 +184,15 @@ sigma, mu = 1.0, 0.0
 G = np.exp(-((D-mu)**2 / ( 2.0 * sigma**2 ) ) )
 print(G)
 
+# Create a structured array representing a position (x,y) and a
+color (r,g,b)
+Z = np.zeros(10, [ ('position', [ ('x', float, 1),
+('y', float, 1)]),
+('color', [ ('r', float, 1),
+('g', float, 1),
+('b', float, 1)])])
+print(Z)
+
 # How to randomly place p elements in a 2D array?
 n = 10
 p = 3
