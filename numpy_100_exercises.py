@@ -177,6 +177,9 @@ v = np.random.uniform(0,100)
 index = (np.abs(Z-v)).argmin()
 print(Z[index])
 
+# Create a structured array representing a position (x,y) and a
+color (r,g,b).
+
 # Generate a generic 2D Gaussian-like array.
 X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
 D = np.sqrt(X*X+Y*Y)
