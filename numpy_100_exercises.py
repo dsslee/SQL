@@ -179,6 +179,16 @@ print(Z[index])
 
 # Create a structured array representing a position (x,y) and a
 color (r,g,b).
+Z = np.zeros(10, [ ('position', [ ('x', float, 1),
+('y', float, 1)]),
+('color', [ ('r', float, 1),
+('g', float, 1),
+('b', float, 1)])])
+print(Z)
+
+
+
+
 
 # Generate a generic 2D Gaussian-like array.
 X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
