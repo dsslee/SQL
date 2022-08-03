@@ -191,14 +191,12 @@ in place?
 Z = np.arange(10, dtype=np.int32)
 Z = Z.astype(np.float32, copy=False)
 
-
 # Generate a generic 2D Gaussian-like array.
 X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
 D = np.sqrt(X*X+Y*Y)
 sigma, mu = 1.0, 0.0
 G = np.exp(-((D-mu)**2 / ( 2.0 * sigma**2 ) ) )
 print(G)
-
 
 # How to randomly place p elements in a 2D array?
 n = 10
