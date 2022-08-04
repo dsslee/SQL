@@ -191,6 +191,14 @@ in place?
 Z = np.arange(10, dtype=np.int32)
 Z = Z.astype(np.float32, copy=False)
 
+# How to read the following file?
+# -------------
+1,2,3,4,5
+6,,,7,8
+,,9,10,11
+# -------------
+Z = np.genfromtxt("missing.dat", delimiter=",")
+
 # Generate a generic 2D Gaussian-like array.
 X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
 D = np.sqrt(X*X+Y*Y)
