@@ -199,6 +199,10 @@ Z = Z.astype(np.float32, copy=False)
 # -------------
 Z = np.genfromtxt("missing.dat", delimiter=",")
 
+
+# What is the equivalent of enumerate for numpy arrays?
+
+
 # Generate a generic 2D Gaussian-like array.
 X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
 D = np.sqrt(X*X+Y*Y)
