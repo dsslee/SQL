@@ -201,7 +201,11 @@ Z = np.genfromtxt("missing.dat", delimiter=",")
 
 
 # What is the equivalent of enumerate for numpy arrays?
-
+Z = np.arange(9).reshape(3,3)
+for index, value in np.ndenumerate(Z):
+print(index, value)
+for index in np.ndindex(Z.shape):
+print(index, Z[index])
 
 # Generate a generic 2D Gaussian-like array.
 X, Y = np.meshgrid(np.linspace(-1,1,10), np.linspace(-1,1,10))
