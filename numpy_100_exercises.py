@@ -186,8 +186,7 @@ Z = np.zeros(10, [ ('position', [ ('x', float, 1),
 ('b', float, 1)])])
 print(Z)
 
-# How to convert a float (32 bits) array into an integer (32 bits)
-in place?
+# How to convert a float (32 bits) array into an integer (32 bits) in place?
 Z = np.arange(10, dtype=np.int32)
 Z = Z.astype(np.float32, copy=False)
 
