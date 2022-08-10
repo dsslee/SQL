@@ -219,7 +219,10 @@ p = 3
 Z = np.zeros((n,n))
 np.put(Z, np.random.choice(range(n*n), p, replace=False),1)
 
-# What is the equivalent of enumerate for numpy arrays
+# Q50) Subtract the mean of each row of a matrix
+
+
+# What is the equivalent of enumerate for numpy arrays.
 Z = np.arange(9).reshape(3,3)
 for index, value in np.ndenumerate(Z):
 print(index, value)
