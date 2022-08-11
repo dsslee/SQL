@@ -198,7 +198,6 @@ Z = Z.astype(np.float32, copy=False)
 # -------------
 Z = np.genfromtxt("missing.dat", delimiter=",")
 
-
 # What is the equivalent of enumerate for numpy arrays?
 Z = np.arange(9).reshape(3,3)
 for index, value in np.ndenumerate(Z):
@@ -226,7 +225,6 @@ Y = X - X.mean(axis=1, keepdims=True)
 # Older versions of numpy
 Y = X - X.mean(axis=1).reshape(-1, 1)
 
-
 # How to I sort an array by the nth column?
 Z = np.random.randint(0,10,(3,3))
 print(Z[Z[:,1].argsort()])
@@ -234,3 +232,4 @@ print(Z[Z[:,1].argsort()])
 # How to tell if a given 2D array has null columns?
 Z = np.random.randint(0,3,(3,10))
 print((~Z.any(axis=0)).any())
+
