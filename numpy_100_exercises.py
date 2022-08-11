@@ -219,15 +219,13 @@ p = 3
 Z = np.zeros((n,n))
 np.put(Z, np.random.choice(range(n*n), p, replace=False),1)
 
-# Q50) Subtract the mean of each row of a matrix
+# Q50) Subtract the mean of each row of a matrix.
+X = np.random.rand(5, 10)
+# Recent versions of numpy
+Y = X - X.mean(axis=1, keepdims=True)
+# Older versions of numpy
+Y = X - X.mean(axis=1).reshape(-1, 1)
 
-
-# What is the equivalent of enumerate for numpy arrays.
-Z = np.arange(9).reshape(3,3)
-for index, value in np.ndenumerate(Z):
-print(index, value)
-for index in np.ndindex(Z.shape):
-print(index, Z[index])
 
 # How to I sort an array by the nth column?
 Z = np.random.randint(0,10,(3,3))
