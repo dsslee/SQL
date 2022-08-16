@@ -239,7 +239,7 @@ z = 0.5
 m = Z.flat[np.abs(Z - z).argmin()]
 print(m)
 
-# Create an array class that has a name attribute
+# Create an array class that has a name attribute.
 class NamedArray(np.ndarray):
     def __new__(cls, array, name="no name"): 
         obj = np.asarray(array).view(cls)
