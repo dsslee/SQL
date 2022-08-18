@@ -248,7 +248,7 @@ class NamedArray(np.ndarray):
 
     def __array_finalize__(self, obj):
         if obj is None: return
+        self.info = getattr(obj, 'name', "no name")
 
-self.info = getattr(obj, 'name', "no name")
 Z = NamedArray(np.arange(10), "range_10")
 print (Z.name)
