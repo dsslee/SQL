@@ -252,3 +252,12 @@ class NamedArray(np.ndarray):
 
 Z = NamedArray(np.arange(10), "range_10")
 print (Z.name)
+
+
+# Consider a given vector, how to add 1 to each element
+indexed by a second vector (be careful with repeated
+indices)?
+Z = np.ones(10)
+I = np.random.randint(0,len(Z),20)
+Z += np.bincount(I, minlength=len(Z))
+print(Z)
