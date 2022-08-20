@@ -261,3 +261,10 @@ Z = np.ones(10)
 I = np.random.randint(0,len(Z),20)
 Z += np.bincount(I, minlength=len(Z))
 print(Z)
+
+# How to accumulate elements of a vector (X) to an array (F)
+based on an index list (I)?
+X = [1,2,3,4,5,6]
+I = [1,3,9,3,4,1]
+F = np.bincount(I,X)
+print(F)
