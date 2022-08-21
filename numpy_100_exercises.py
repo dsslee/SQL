@@ -268,3 +268,10 @@ X = [1,2,3,4,5,6]
 I = [1,3,9,3,4,1]
 F = np.bincount(I,X)
 print(F)
+
+# Considering a (w,h,3) image of (dtype=ubyte), compute the number of unique colors.
+w,h = 16,16
+I = np.random.randint(0,2,(h,w,3)).astype(np.ubyte)
+F = I[...,0]*256*256 + I[...,1]*256 +I[...,2]
+n = len(np.unique(F))
+print(np.unique(I))
