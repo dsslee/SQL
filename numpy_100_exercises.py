@@ -275,3 +275,8 @@ I = np.random.randint(0,2,(h,w,3)).astype(np.ubyte)
 F = I[...,0]*256*256 + I[...,1]*256 +I[...,2]
 n = len(np.unique(F))
 print(np.unique(I))
+
+# Considering a four dimensions array, how to get sum over the last two axis at once?
+A = np.random.randint(0,10,(3,4,3,4))
+sum = A.reshape(A.shape[:-2] + (-1,)).sum(axis=-1)
+print(sum)
