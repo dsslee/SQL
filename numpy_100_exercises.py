@@ -279,3 +279,13 @@ print(np.unique(I))
 A = np.random.randint(0,10,(3,4,3,4))
 sum = A.reshape(A.shape[:-2] + (-1,)).sum(axis=-1)
 print(sum)
+
+# Considering a one-dimensional vector D, how to compute
+means of subsets of D using a vector S of same size
+describing subset indices?
+D = np.random.uniform(0,1,100)
+S = np.random.randint(0,10,100)
+D_sums = np.bincount(S, weights=D)
+D_counts = np.bincount(S)
+D_means = D_sums / D_counts
+print(D_means)
