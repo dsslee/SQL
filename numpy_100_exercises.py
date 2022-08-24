@@ -290,5 +290,4 @@ D_counts = np.bincount(S)
 D_means = D_sums / D_counts
 print(D_means)
 
-#Q60)
-How to get the diagonal of a dot product?
+#Q60) How to get the diagonal of a dot product?
