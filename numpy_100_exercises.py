@@ -295,3 +295,5 @@ print(D_means)
 np.diag(np.dot(A, B))
 # option2: faster
 np.sum(A * B.T, axis=1)
+# option3: fastest
+np.einsum("ij,ji->i", A, B).
