@@ -296,4 +296,7 @@ np.diag(np.dot(A, B))
 # option2: faster
 np.sum(A * B.T, axis=1)
 # option3: fastest
-np.einsum("ij,ji->i", A, B).
+np.einsum("ij,ji->i", A, B)
+
+# Consider the vector [1, 2, 3, 4, 5], how to build a new vector
+with 3 consecutive zeros interleaved between each value?
