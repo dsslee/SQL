@@ -298,8 +298,7 @@ np.sum(A * B.T, axis=1)
 # option3: fastest
 np.einsum("ij,ji->i", A, B)
 
-# Consider the vector [1, 2, 3, 4, 5], how to build a new vector
-with 3 consecutive zeros interleaved between each value?
+# Consider the vector [1, 2, 3, 4, 5], how to build a new vector with 3 consecutive zeros interleaved between each value?
 Z = np.array([1,2,3,4,5])
 nz = 3
 Z0 = np.zeros(len(Z) + (len(Z)-1)*(nz))
