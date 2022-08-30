@@ -304,3 +304,6 @@ nz = 3
 Z0 = np.zeros(len(Z) + (len(Z)-1)*(nz))
 Z0[::nz+1] = Z
 print(Z0)
+
+# Consider an array of dimension (5,5,3), how to mulitply it by
+an array with dimensions (5,5)?
