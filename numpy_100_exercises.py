@@ -306,3 +306,6 @@ Z0[::nz+1] = Z
 print(Z0)
 
 # Consider an array of dimension (5,5,3), how to mulitply it by an array with dimensions (5,5)?
+A = np.ones((5,5,3))
+B = 2*np.ones((5,5))
+print(A * B[:,:,None])
