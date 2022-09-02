@@ -309,3 +309,5 @@ print(Z0)
 A = np.ones((5,5,3))
 B = 2*np.ones((5,5))
 print(A * B[:,:,None])
+
+# How to swap two rows of an array?
