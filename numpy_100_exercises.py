@@ -311,3 +311,6 @@ B = 2*np.ones((5,5))
 print(A * B[:,:,None])
 
 # How to swap two rows of an array?
+A = np.arange(25).reshape(5,5)
+A[[0,1]] = A[[1,0]]
+print(A)
