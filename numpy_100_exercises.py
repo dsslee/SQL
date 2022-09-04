@@ -315,6 +315,4 @@ A = np.arange(25).reshape(5,5)
 A[[0,1]] = A[[1,0]]
 print(A)
 
-# Consider a set of 10 triplets describing 10 triangles (with
-shared vertices), find the set of unique line segments
-composing all the triangles
+# Consider a set of 10 triplets describing 10 triangles (with shared vertices), find the set of unique line segments composing all the triangles.
