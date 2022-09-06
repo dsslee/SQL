@@ -323,3 +323,5 @@ F = np.sort(F,axis=1)
 G = F.view( dtype=[('p0',F.dtype),('p1',F.dtype)] )
 G = np.unique(G)
 print(G)
+
+# Given an array C that is a bincount, how to produce an array A such that np.bincount(A) == C?
