@@ -325,3 +325,6 @@ G = np.unique(G)
 print(G)
 
 # Given an array C that is a bincount, how to produce an array A such that np.bincount(A) == C?
+C = np.bincount([1,1,2,3,4,4,6])
+A = np.repeat(np.arange(len(C)), C)
+print(A)
