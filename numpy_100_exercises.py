@@ -329,11 +329,15 @@ C = np.bincount([1,1,2,3,4,4,6])
 A = np.repeat(np.arange(len(C)), C)
 print(A)
 
-# How to compute averages using a sliding window over an
-array?
+# How to compute averages using a sliding window over an array?
 def moving_average(a, n=3) :
 ret = np.cumsum(a, dtype=float)
 ret[n:] = ret[n:] - ret[:-n]
 return ret[n - 1:] / n
 Z = np.arange(20)
 print(moving_average(Z, n=3))
+
+# Consider a one-dimensional array Z, build a twodimensional
+array whose first row is (Z[0],Z[1],Z[2]) and each
+subsequent row is shifted by 1
+
