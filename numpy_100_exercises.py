@@ -337,7 +337,11 @@ return ret[n - 1:] / n
 Z = np.arange(20)
 print(moving_average(Z, n=3))
 
-# Consider a one-dimensional array Z, build a twodimensional
-array whose first row is (Z[0],Z[1],Z[2]) and each
-subsequent row is shifted by 1
+# Consider a one-dimensional array Z, build a twodimensional array whose first row is (Z[0],Z[1],Z[2]) and each subsequent row is shifted by 1.
+from numpy.lib import stride_tricks
+def rolling(a, window):
+shape = (a.size - window + 1, window)
+strides = (a.itemsize, a.itemsize)
+return stride_tricks.as_strided(a, shape=shape, strides=strides)
+Z = rolling(np.arange(10), 3)
 
