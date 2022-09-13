@@ -345,3 +345,8 @@ strides = (a.itemsize, a.itemsize)
 return stride_tricks.as_strided(a, shape=shape, strides=strides)
 Z = rolling(np.arange(10), 3)
 
+# How to negate a boolean, or to change the sign of a float inplace?
+Z = np.random.randint(0,2,100)
+np.logical_not(arr, out=arr)
+Z = np.random.uniform(-1.0,1.0,100)
+np.negative(arr, out=arr)
