@@ -363,3 +363,9 @@ P0 = np.random.uniform(-10,10,(10,2))
 P1 = np.random.uniform(-10,10,(10,2))
 p = np.random.uniform(-10,10,(1,2))
 print(distance(P0, P1, p))
+
+# Consider 2 sets of points P0,P1 describing lines (2d) and a set of points P, how to compute distance from each point j (P[j]) to each line i (P0[i],P1[i])?
+P0 = np.random.uniform(-10, 10, (10,2))
+P1 = np.random.uniform(-10,10,(10,2))
+p = np.random.uniform(-10, 10, (10,2))
+print np.array([distance(P0,P1,p_i) for p_i in p])
