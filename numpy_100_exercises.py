@@ -371,5 +371,3 @@ p = np.random.uniform(-10, 10, (10,2))
 print np.array([distance(P0,P1,p_i) for p_i in p])
 
 # Consider an arbitrary array, write a function that extract a subpart with a fixed shape and centered on a given element.
-Z = np.random.randint(0,10,(10,10))
-shape = (5,5)
