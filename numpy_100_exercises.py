@@ -371,3 +371,6 @@ p = np.random.uniform(-10, 10, (10,2))
 print np.array([distance(P0,P1,p_i) for p_i in p])
 
 # Consider an array Z = [1,2,3,4,5,6,7,8,9,10,11,12,13,14], how to generate an array R = [[1,2,3,4], [2,3,4,5], [3,4,5,6], ..., [11,12,13,14]]?
+Z = np.arange(1,15,dtype=uint32)
+R = stride_tricks.as_strided(Z,(11,4),(4,4))
+print(R)
