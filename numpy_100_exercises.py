@@ -374,3 +374,5 @@ print np.array([distance(P0,P1,p_i) for p_i in p])
 Z = np.arange(1,15,dtype=uint32)
 R = stride_tricks.as_strided(Z,(11,4),(4,4))
 print(R)
+
+# Compute a matrix rank
