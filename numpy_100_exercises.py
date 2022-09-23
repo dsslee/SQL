@@ -376,3 +376,6 @@ R = stride_tricks.as_strided(Z,(11,4),(4,4))
 print(R)
 
 # Compute a matrix rank
+Z = np.random.uniform(0,1,(10,10))
+U, S, V = np.linalg.svd(Z) # Singular Value Decomposition
+rank = np.sum(S > 1e-10)
