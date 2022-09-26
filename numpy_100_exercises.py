@@ -383,3 +383,5 @@ rank = np.sum(S > 1e-10)
 # How to find the most frequent value in an array?
 Z = np.random.randint(0,10,50)
 print(np.bincount(Z).argmax())
+
+# Extract all the contiguous 3x3 blocks from a random 10x10 matrix.
