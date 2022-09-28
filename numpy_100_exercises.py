@@ -391,3 +391,5 @@ i = 1 + (Z.shape[0]-3)
 j = 1 + (Z.shape[1]-3)
 C = stride_tricks.as_strided(Z, shape=(i, j, n, n), strides=Z.strides + Z.strides)
 print(C)
+
+# Create a 2D array subclass such that Z[i,j] == Z[j,i]
