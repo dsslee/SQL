@@ -393,3 +393,9 @@ C = stride_tricks.as_strided(Z, shape=(i, j, n, n), strides=Z.strides + Z.stride
 print(C)
 
 # Create a 2D array subclass such that Z[i,j] == Z[j,i]
+def symetric(Z):
+    return np.asarray(Z + Z.T - np.diag(Z.diagonal())).view(Symetric)
+
+s = symetric(np.random.randint(0,10,(5,5)))
+s[2,3] = 42
+print(S)
