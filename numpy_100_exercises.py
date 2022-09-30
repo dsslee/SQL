@@ -384,3 +384,18 @@ rank = np.sum(S > 1e-10)
 Z = np.random.randint(0,10,50)
 print(np.bincount(Z).argmax())
 
+# Extract all the contiguous 3x3 blocks from a random 10x10 matrix.
+Z = np.random.randint(0,5,(10,10))
+n = 3
+i = 1 + (Z.shape[0]-3)
+j = 1 + (Z.shape[1]-3)
+C = stride_tricks.as_strided(Z, shape=(i, j, n, n), strides=Z.strides + Z.strides)
+print(C)
+
+# Create a 2D array subclass such that Z[i,j] == Z[j,i]
+def symetric(Z):
+    return np.asarray(Z + Z.T - np.diag(Z.diagonal())).view(Symetric)
+
+s = symetric(np.random.randint(0,10,(5,5)))
+s[2,3] = 42
+print(S)
