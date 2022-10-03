@@ -407,3 +407,7 @@ S = np.add.reduceat(np.add.reduceat(Z, np.arange(0, Z.shape[0], k), axis=0),
 np.arange(0, Z.shape[1], k), axis=1)
 
 # Q80) How to get the n largest values of an array. 
+Z = np.arange(10000)
+np.random.shuffle(Z)
+n = 5
+print (Z[np.argpartition(-Z,n)[:n]])
