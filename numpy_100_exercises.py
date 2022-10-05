@@ -413,3 +413,5 @@ n = 5
 print (Z[np.argpartition(-Z,n)[:n]])
 #-- option2
 print (Z[np.argsort(Z)[-n:]])
+
+# Considering a 10x3 matrix, extract rows with unequal values.
