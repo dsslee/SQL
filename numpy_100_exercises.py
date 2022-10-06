@@ -415,3 +415,8 @@ print (Z[np.argpartition(-Z,n)[:n]])
 print (Z[np.argsort(Z)[-n:]])
 
 # Considering a 10x3 matrix, extract rows with unequal values.
+Z = np.random.randint(0,5,(10,3))
+E = np.logical_and.reduce(Z[:,1:] == Z[:,:-1], axis=1)
+U = Z[~E]
+print(Z)
+print(U)
