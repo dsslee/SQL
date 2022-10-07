@@ -420,3 +420,5 @@ E = np.logical_and.reduce(Z[:,1:] == Z[:,:-1], axis=1)
 U = Z[~E]
 print(Z)
 print(U)
+
+# Convert a vector of ints into a matrix binary representation.
