@@ -422,3 +422,7 @@ print(Z)
 print(U)
 
 # Convert a vector of ints into a matrix binary representation.
+# given
+I = np.array([0, 1, 2, 3, 15, 16, 32, 64, 128])
+B = ((I.reshape(-1,1) & (2**np.arange(8))) != 0).astype(int)
+print(B[:,::-1])
