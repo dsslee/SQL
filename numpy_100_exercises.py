@@ -429,3 +429,10 @@ print(B[:,::-1])
 
 I = np.array([0, 1, 2, 3, 15, 16, 32, 64, 128], dtype=np.uint8)
 print(np.unpackbits(I[:, np.newaxis], axis=1))
+
+# Given a two dimensional array, how to extract unique rows?
+Z = np.random.randint(0,2,(6,3))
+T = np.ascontiguousarray(Z).view(np.dtype((np.void, Z.dtype.itemsize * Z.shape[1])))
+_, idx = np.unique(T, return_index=True)
+uZ = Z[idx]
+print(uZ)
